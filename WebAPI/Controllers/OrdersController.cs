@@ -73,5 +73,24 @@ namespace WebAPI.Controllers
         {
             return db.GetOrdersByUser(id).orders;
         }
+
+        [Route("createOrder")]
+        public IHttpActionResult craeteOrder(Order order)
+        {
+            var currentUser = db.getUserByName(User.Identity.Name);
+
+            if (order == null)
+            {
+                BadRequest();
+            }
+            if(currentUser == null)
+            {
+                NotFound();
+            }
+
+            db.CreateOrder(order, currentUser.Id);
+
+            return Ok();
+        }
     }
 }

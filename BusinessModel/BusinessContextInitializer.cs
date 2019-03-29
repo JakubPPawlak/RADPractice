@@ -18,14 +18,6 @@ namespace BusinessModel
         protected override void Seed(BusinessContext context)
         {
 
-            context.Orders.AddOrUpdate(new Order[]
-            {
-                new Order { OrderPlacedDate = new DateTime(1965,12,02), Total = 255.4 },
-                new Order { OrderPlacedDate = new DateTime(2001,12,02), Total = 5645.5 },
-                new Order { OrderPlacedDate = new DateTime(2005,12,02), Total = 1450.4 }
-
-            });
-
             context.Details.AddOrUpdate(new OrderDetail[]
             {
                 new OrderDetail { ProductOdered = "Saw", Qauntity = 52, OrderID = 1 },
@@ -37,6 +29,14 @@ namespace BusinessModel
                 new OrderDetail { ProductOdered = "Saw3", Qauntity = 20, OrderID = 3 },
                 new OrderDetail { ProductOdered = "Hammer3", Qauntity = 14, OrderID = 3 },
                 new OrderDetail { ProductOdered = "Bucket3", Qauntity = 15, OrderID = 3 }
+            });
+
+            context.Orders.AddOrUpdate(new Order[]
+            {
+                new Order { OrderPlacedDate = new DateTime(1965,12,02), Total = 255.4 },
+                new Order { OrderPlacedDate = new DateTime(2001,12,02), Total = 5645.5 },
+                new Order { OrderPlacedDate = new DateTime(2005,12,02), Total = 1450.4 }
+
             });
 
             base.Seed(context);

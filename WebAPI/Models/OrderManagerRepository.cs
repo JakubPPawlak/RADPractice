@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Linq;
 using BusinessModel;
 using BusinessModel.DTO;
 using Microsoft.AspNet.Identity;
@@ -17,7 +16,12 @@ namespace WebAPI.Models
 
         public void CreateOrder(Order order, string uid)
         {
-            //to do
+
+            order.OrderedBy = uid;
+            order.OrderPlacedDate = DateTime.Now;
+
+            bctx.Orders.Add(order);
+            bctx.SaveChanges();
         }
 
         public OrderViewModel GetOrdersByUser(string uid)

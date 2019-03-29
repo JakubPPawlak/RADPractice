@@ -32,7 +32,7 @@ namespace PracticeConsoleApp
                             OrderDetailViewModel odvm = ClientAuthentication.getItem<OrderDetailViewModel>("api/OrderManager/getOrderDetailsForOrder/" + item.OrderID);
 
                             Console.WriteLine("Got {0} order details for order with id {1}", odvm.details.Count(), item.OrderID);
-
+                            Console.WriteLine("Order placed by: {0}", odvm.CustomerName);
                             foreach (var oDetail in odvm.details)
                             {
                                 Console.WriteLine("Order ID: {0}, Order Detail ID: {1}, Product Ordered: {2}, Quantity Ordered: {3}", oDetail.OrderID, oDetail.OrderDetailID, oDetail.ProductOdered, oDetail.Qauntity);
@@ -40,6 +40,22 @@ namespace PracticeConsoleApp
                         }
                     }
 
+                    Console.ReadKey();
+                    Console.Clear();
+                    Order newOrder = new Order();
+                    Console.WriteLine("Enter total: ");
+                    newOrder.Total = double.Parse(Console.ReadLine());
+
+                    bool created = ClientAuthentication.PostItem<Order>(newOrder,"api/OrderManager/createOrder");
+
+                    if(created == true)
+                    {
+                        Console.WriteLine("Created Order!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Something went wrong!");
+                    }
 
                 }
                 catch (Exception ex)
